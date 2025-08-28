@@ -1,26 +1,391 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Современные CSS переменные для отступов и типографики */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Spacing System - 8px base grid */
+  --space-xs: 0.25rem;    /* 4px */
+  --space-sm: 0.5rem;     /* 8px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  --space-4xl: 6rem;      /* 96px */
+  --space-5xl: 8rem;      /* 128px */
+  
+  /* Typography Scale - Modern 1.25 ratio */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+  --text-7xl: 4.5rem;     /* 72px */
+  
+  /* Container Max Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.375rem;  /* 6px */
+  --radius-lg: 0.5rem;    /* 8px */
+  --radius-xl: 0.75rem;   /* 12px */
+  --radius-2xl: 1rem;     /* 16px */
+  --radius-3xl: 1.5rem;   /* 24px */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: hsl(var(--border));
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: hsl(var(--foreground));
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Премиум градиенты */
+.premium-gradient {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #fff200 50%, #ffed4e 75%, #ffd700 100%);
+  background-size: 200% 200%;
+}
+
+.premium-gradient-dark {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%, #0f0f0f 100%);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #fff200 50%, #ffed4e 75%, #ffd700 100%);
+  background-size: 200% 200%;
+}
+
+/* Современные утилиты для отступов */
+@layer utilities {
+  /* Container utilities */
+  .container-modern {
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+  
+  @media (min-width: 640px) {
+    .container-modern {
+      padding-left: var(--space-lg);
+      padding-right: var(--space-lg);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container-modern {
+      padding-left: var(--space-xl);
+      padding-right: var(--space-xl);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-modern {
+      padding-left: var(--space-2xl);
+      padding-right: var(--space-2xl);
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container-modern {
+      padding-left: var(--space-3xl);
+      padding-right: var(--space-3xl);
+    }
+  }
+
+  /* Spacing utilities */
+  .space-section {
+    padding: var(--space-4xl) 0;
+  }
+  
+  .space-section-sm {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .space-section-lg {
+    padding: var(--space-5xl) 0;
+  }
+  
+  .space-container {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  /* Скрытие скроллбара для мобильного свайпа */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Стили для мобильного свайпа */
+  .swipe-container {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .swipe-item {
+    scroll-snap-align: start;
+  }
+}
+
+/* Существующие стили */
+.line-clamp-1 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+
+.bg-gradient-radial {
+	background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Анимации */
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(40px) scale(0.95);
+		filter: blur(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+		filter: blur(0);
+	}
+}
+
+@keyframes slide-in-left {
+	from {
+		opacity: 0;
+		transform: translateX(-50px) scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+.hero-text-gradient {
+	background: linear-gradient(90deg, #ffffff, #fbbf24, #ffffff, #fbbf24);
+	background-size: 300% 100%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.animate-fade-in-up {
+	animation: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-left {
+	animation: slide-in-left 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-up.delay-200 {
+	animation-delay: 200ms;
+}
+
+.animate-fade-in-up.delay-400 {
+	animation-delay: 400ms;
+}
+
+.animate-fade-in-up.delay-600 {
+	animation-delay: 600ms;
+}
+
+.animate-fade-in-up.delay-800 {
+	animation-delay: 800ms;
+}
+
+.animate-fade-in-up.delay-1000 {
+	animation-delay: 1000ms;
+}
+
+.glass-effect {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Логотип с инверсией для темного фона */
+.logo-inverted {
+	filter: invert(1) brightness(1.2) contrast(1.1);
+}
+
+.logo-inverted:hover {
+	filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(45deg);
+}
+
+/* Варианты для лучшей видимости логотипа */
+.logo-visible {
+	filter: brightness(1.2) contrast(1.1);
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 50%;
+	padding: 12px;
+	border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-visible:hover {
+	filter: brightness(1.4) contrast(1.5) sepia(0.3) saturate(1.5) hue-rotate(45deg);
+	background: rgba(255, 255, 255, 0.15);
+	border: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Логотип без фильтров */
+.logo-natural {
+	filter: none;
+	padding: 0;
+	border-radius: 0;
+}
+
+.logo-natural:hover {
+	filter: brightness(1.1);
+	transform: scale(1.05);
+	transition: all 0.3s ease;
+}
+
+/* Анимации */
+
+/* Премиум кнопки */
+.btn-premium {
+  @apply bg-gradient-to-r from-yellow-400 to-yellow-300 text-black font-semibold px-6 py-3 rounded-lg;
+  @apply hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300;
+  @apply shadow-lg hover:shadow-xl transform hover:scale-105;
+}
+
+.btn-secondary {
+  @apply bg-transparent border border-yellow-400 text-yellow-400 font-semibold px-6 py-3 rounded-lg;
+  @apply hover:bg-yellow-400 hover:text-black transition-all duration-300;
+  @apply shadow-lg hover:shadow-xl transform hover:scale-105;
+}
+
+/* Премиум карточки */
+.card-premium {
+  @apply bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6;
+  @apply border border-gray-700 shadow-2xl;
+  @apply hover:shadow-yellow-400/20 transition-all duration-500;
+  @apply backdrop-blur-sm;
+}
+
+/* Премиум секции */
+.section-premium {
+  @apply py-20 px-4;
+  @apply bg-gradient-to-b from-transparent via-gray-900/50 to-transparent;
+}
+
+/* Премиум заголовки */
+.heading-premium {
+  @apply text-4xl md:text-6xl font-bold;
+  @apply bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent;
+  @apply text-center mb-8;
+}
+
+.subheading-premium {
+  @apply text-xl md:text-2xl font-medium text-gray-300;
+  @apply text-center mb-12 max-w-3xl mx-auto;
+}
+
+/* Премиум навигация */
+.nav-premium {
+  @apply bg-black/80 backdrop-blur-md border-b border-gray-800;
+  @apply sticky top-0 z-50;
+}
+
+/* Премиум футер */
+.footer-premium {
+  @apply bg-black border-t border-gray-800;
+  @apply py-12;
+}
+
+/* Кастомные цвета */
+@layer base {
+  :root {
+    --gold: #ffd700;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: #ffd700;
+  }
+  
+  .bg-gold {
+    background-color: #ffd700;
+  }
+  
+  .border-gold {
+    border-color: #ffd700;
+  }
+  
+  .shadow-gold {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+}
+
+/* Анимация для компактных кнопок категорий */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
 }
